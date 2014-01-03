@@ -6,5 +6,6 @@
     <string name="hello_world">Hello world!</string>
     <string name="login">Login</string>
     <string name="title_activity_main">Hauptmenü</string>
+    <string name="sampleMessage">Lorem Ipsum</string>
 
 </resources>

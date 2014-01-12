@@ -1,6 +1,6 @@
 package com.apptodate.model;
 
-public class Event implements IEvent {
+public class Event {
 
 	private long createdAt;
 	private long id;

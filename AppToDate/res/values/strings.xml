@@ -11,5 +11,5 @@
     <string name="textPersonCourse">IMUK</string>
     <string name="textPersonSemester">6. Semester</string>
     <string name="personSettings">settings</string>
-
+    <string name="sampleMessage">Lorem Ipsum</string>
 </resources>

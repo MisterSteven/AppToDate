@@ -6,5 +6,10 @@
     <string name="hello_world">Hello world!</string>
     <string name="login">Login</string>
     <string name="title_activity_main">Hauptmenü</string>
+    <string name="addAppointment">+</string>
+    <string name="textPersonName">sipabueh</string>
+    <string name="textPersonCourse">IMUK</string>
+    <string name="textPersonSemester">6. Semester</string>
+    <string name="personSettings">settings</string>
 
 </resources>

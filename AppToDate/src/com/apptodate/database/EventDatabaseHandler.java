@@ -15,7 +15,7 @@ public class EventDatabaseHandler extends SQLiteOpenHelper{
 
 	// All Static variables
     // Database Version
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 2;
  
     // Database Name
     private static final String DATABASE_NAME = "eventsManager";
@@ -26,12 +26,12 @@ public class EventDatabaseHandler extends SQLiteOpenHelper{
     // Contacts Table Columns names
     private static final String KEY_ID = "_id";
     private static final String KEY_CREATE_AT = "created_at";
-    private static final String KEY_DT_START = "event_at";
-    private static final String KEY_DT_END = "";
-    private static final String KEY_DISPLAY_NAME = "";
-    private static final String KEY_CALENDAR_ID = "";
-    private static final String KEY_DESCRIPTION = "";
-    
+    private static final String KEY_DT_START = "date_start";
+    private static final String KEY_DT_END = "date_end";
+    private static final String KEY_DISPLAY_NAME = "display_name";
+    private static final String KEY_CALENDAR_ID = "calendar_id";
+    private static final String KEY_DESCRIPTION = "description";
+    private static final String KEY_PLACE = "place";
 	
 	public EventDatabaseHandler (Context context){
 		super (context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -40,8 +40,14 @@ public class EventDatabaseHandler extends SQLiteOpenHelper{
 	@Override
 	public void onCreate(SQLiteDatabase db) {
 		String sqlString = 
-				"CREATE TABLE " + TABLE_EVENT + "(" + KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + 
-				KEY_CREATE_AT + " DATETIME , " + KEY_DT_START +" DATETIME" + ");";
+				"CREATE TABLE " + TABLE_EVENT + "(" + 
+						KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + 
+						KEY_CREATE_AT + " DATETIME , " + 
+						KEY_DT_START +" DATETIME, " + 
+						KEY_DISPLAY_NAME + " STRING, " +
+						KEY_DESCRIPTION + " STRING, " +
+						KEY_PLACE + " STRING "+
+						");";
 		db.execSQL(sqlString);
 	}
 	
@@ -57,18 +63,26 @@ public class EventDatabaseHandler extends SQLiteOpenHelper{
 		SQLiteDatabase db = this.getWritableDatabase();
 		
 		ContentValues values = new ContentValues();
-		values.put(KEY_DT_START, ev.getEventAt());
+		values.put(KEY_DT_START, ev.getDtstart());
 		values.put(KEY_CREATE_AT, Calendar.getInstance().getTimeInMillis());
+		values.put(KEY_DESCRIPTION, ev.getDescription());
+		//values.put(KEY_DISPLAY_NAME, "");
+		values.put(KEY_PLACE, ev.getPlace());
 		
 		// Inserting Row
 	    db.insert(TABLE_EVENT, null, values);
 	    db.close(); // Closing database connection
 	}
 	
-	public ArrayList<Event> readValuesLocal (){
+	public ArrayList<Event> readDatabaseContent (){
 		SQLiteDatabase db = this.getReadableDatabase();
 		Cursor recs = db.rawQuery(
-				"SELECT " + KEY_ID + ", " + KEY_CREATE_AT +", " + KEY_DT_START + " FROM " + TABLE_EVENT ,
+				"SELECT " + KEY_ID + ", " +
+						KEY_CREATE_AT +", " +
+						KEY_DT_START + ", " +
+						KEY_DESCRIPTION +", " +
+						KEY_PLACE +
+						" FROM " + TABLE_EVENT ,
 				null
 				);
 		ArrayList<Event> result = new ArrayList<Event>();
@@ -76,7 +90,9 @@ public class EventDatabaseHandler extends SQLiteOpenHelper{
 			Event e = new Event();
 			e.setId(recs.getLong(0));
 			e.setCreatedAt( recs.getLong(1));
-			e.setEventAt(recs.getLong(2));
+			e.setDtstart(recs.getLong(2));
+			e.setDescription(recs.getString(3));
+			e.setPlace(recs.getString(4));
 			result.add(e);
 		}
 		recs.close();

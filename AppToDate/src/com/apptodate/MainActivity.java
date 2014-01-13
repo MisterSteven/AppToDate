@@ -23,8 +23,20 @@ public class MainActivity extends Activity {
 	}
 	
 	public void btnProfile (View view){
-		Intent intent = new Intent(MainActivity.this, MainActivity.class);
+		//Intent intent = new Intent(MainActivity.this, TerminEintragen.class);
 		Log.d("Profile-Button", "You have clicked the invade moon button!");
+        //startActivity(intent);
+	}
+	
+	public void btnAddEvent (View view){
+		Intent intent = new Intent(MainActivity.this, TerminEintragen.class);
+		Log.d("Add-Button", "You have clicked the button for adding a new event");
+        startActivity(intent);
+	}
+	
+	public void btnInbox (View view){
+		Intent intent = new Intent(MainActivity.this, InboxActivity.class);
+		Log.d("Inbox-Button", "You have clicked the Inbox-Button");
         startActivity(intent);
 	}
 

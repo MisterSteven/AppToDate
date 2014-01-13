@@ -13,10 +13,9 @@
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
-        <activity 
-            android:name="com.apptodate.MainActivity" 
-            android:label="@string/title_activity_main">
-            
+        <activity
+            android:name="com.apptodate.MainActivity"
+            android:label="@string/title_activity_main" >
         </activity>
         <activity
             android:name="com.apptodate.LogInActivity"
@@ -27,7 +26,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        
+        <activity
+            android:name="com.apptodate.TerminEintragen"
+            android:label="@string/title_activity_termin_eintragen" >
+        </activity>
+        <activity
+            android:name="com.apptodate.InboxActivity"
+            android:label="@string/title_activity_inbox" >
+        </activity>
     </application>
 
 </manifest>

@@ -54,7 +54,7 @@
     </TabHost>
 
     <EditText
-        android:id="@+id/editText1"
+        android:id="@+id/textDescription"
         android:layout_width="300dp"
         android:layout_height="84dp"
         android:ems="10"

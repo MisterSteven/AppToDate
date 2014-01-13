@@ -15,7 +15,8 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="102dp"
-        android:text="@string/login" />
+        android:text="@string/login" 
+        android:onClick="btnLogInEvent"/>
 
     <EditText
         android:id="@+id/fieldUserName"

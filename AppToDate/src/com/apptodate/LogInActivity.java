@@ -2,7 +2,9 @@ package com.apptodate;
 
 import android.os.Bundle;
 import android.app.Activity;
+import android.content.Intent;
 import android.view.Menu;
+import android.view.View;
 
 public class LogInActivity extends Activity {
 
@@ -19,5 +21,11 @@ public class LogInActivity extends Activity {
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
+    
+
+	public void btnLogInEvent (View view){
+		Intent intent = new Intent(LogInActivity.this, MainActivity.class);
+        startActivity(intent);
+	}
     
 }

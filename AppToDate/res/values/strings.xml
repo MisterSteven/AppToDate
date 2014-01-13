@@ -12,4 +12,10 @@
     <string name="textPersonSemester">6. Semester</string>
     <string name="personSettings">settings</string>
     <string name="sampleMessage">Lorem Ipsum</string>
+    <string name="appointmentDescription">Beschreibung:</string>
+    <string name="appointmentDate">Datum:</string>
+    <string name="appointmentClock">Uhrzeit:</string>
+    <string name="appointmentLocation">Ort:</string>
+    <string name="appointmentSignIn">Eintragen</string>
+    <string name="appointmentTrash">Verwerfen</string>
 </resources>

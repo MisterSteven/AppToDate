@@ -2,7 +2,10 @@ package com.apptodate;
 
 import android.os.Bundle;
 import android.app.Activity;
+import android.content.Intent;
+import android.util.Log;
 import android.view.Menu;
+import android.view.View;
 
 public class MainActivity extends Activity {
 
@@ -19,5 +22,10 @@ public class MainActivity extends Activity {
 		return true;
 	}
 	
+	public void btnProfile (View view){
+		Intent intent = new Intent(MainActivity.this, MainActivity.class);
+		Log.d("Profile-Button", "You have clicked the invade moon button!");
+        startActivity(intent);
+	}
 
 }

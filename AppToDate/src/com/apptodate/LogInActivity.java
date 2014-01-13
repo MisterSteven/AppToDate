@@ -3,6 +3,7 @@ package com.apptodate;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 
@@ -25,6 +26,7 @@ public class LogInActivity extends Activity {
 
 	public void btnLogInEvent (View view){
 		Intent intent = new Intent(LogInActivity.this, MainActivity.class);
+		Log.d("LogIn", "Change LogIn-Activity to MainActivity");
         startActivity(intent);
 	}
     

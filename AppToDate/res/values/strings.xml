@@ -18,4 +18,7 @@
     <string name="appointmentLocation">Ort:</string>
     <string name="appointmentSignIn">Eintragen</string>
     <string name="appointmentTrash">Verwerfen</string>
+    <string name="friendsFakultät">Fakultät:</string>
+    <string name="friendsStudiengang">Studiengang:</string>
+    <string name="friendsSemester">Semester:</string>
 </resources>

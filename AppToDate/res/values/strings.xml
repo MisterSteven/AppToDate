@@ -4,6 +4,7 @@
     <string name="app_name">App To Date</string>
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
+    <string name="menu_settings">Settings</string>
     <string name="login">Login</string>
     <string name="title_activity_main">Hauptmenü</string>
     <string name="addAppointment">+</string>

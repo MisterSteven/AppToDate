@@ -32,6 +32,7 @@ public class EventDatabaseHandler extends SQLiteOpenHelper{
     private static final String KEY_CALENDAR_ID = "calendar_id";
     private static final String KEY_DESCRIPTION = "description";
     private static final String KEY_PLACE = "place";
+    private static final String KEY_TITLE ="title";
 	
 	public EventDatabaseHandler (Context context){
 		super (context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -47,6 +48,7 @@ public class EventDatabaseHandler extends SQLiteOpenHelper{
 						KEY_DISPLAY_NAME + " STRING, " +
 						KEY_DESCRIPTION + " STRING, " +
 						KEY_PLACE + " STRING "+
+						KEY_TITLE + " String " +
 						");";
 		db.execSQL(sqlString);
 	}
@@ -68,6 +70,7 @@ public class EventDatabaseHandler extends SQLiteOpenHelper{
 		values.put(KEY_DESCRIPTION, ev.getDescription());
 		//values.put(KEY_DISPLAY_NAME, "");
 		values.put(KEY_PLACE, ev.getPlace());
+		values.put(KEY_TITLE, ev.getTitle());
 		
 		// Inserting Row
 	    db.insert(TABLE_EVENT, null, values);
@@ -81,7 +84,8 @@ public class EventDatabaseHandler extends SQLiteOpenHelper{
 						KEY_CREATE_AT +", " +
 						KEY_DT_START + ", " +
 						KEY_DESCRIPTION +", " +
-						KEY_PLACE +
+						KEY_PLACE + ", " +
+						KEY_TITLE +
 						" FROM " + TABLE_EVENT ,
 				null
 				);
@@ -93,6 +97,7 @@ public class EventDatabaseHandler extends SQLiteOpenHelper{
 			e.setDtstart(recs.getLong(2));
 			e.setDescription(recs.getString(3));
 			e.setPlace(recs.getString(4));
+			e.setTitle(recs.getString(5));
 			result.add(e);
 		}
 		recs.close();

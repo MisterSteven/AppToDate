@@ -59,5 +59,6 @@ public class MainActivity extends Activity {
 		Log.d("Inbox-Button", "You have clicked the Inbox-Button");
         startActivity(intent);
 	}
+	
 
 }

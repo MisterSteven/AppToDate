@@ -7,6 +7,7 @@ public class Event {
 	private long dtstart;
 	private String description;
 	private String place;
+	private String title;
 
 	public Event() {
 		this.id = -1;
@@ -14,14 +15,16 @@ public class Event {
 		this.dtstart = -1;
 		this.description = "";
 		this.place = "";
+		this.title = "";
 	}
 
-	public Event(long id, long createdAt, long eventAt, String description, String place) {
+	public Event(long id, long createdAt, long eventAt, String description, String place, String title) {
 		this.id = id;
 		this.createdAt = createdAt;
 		this.dtstart = eventAt;
 		this.description = description;
 		this.place = place;
+		this.title = title;
 	}
 
 	public long getCreatedAt() {
@@ -62,6 +65,14 @@ public class Event {
 
 	public void setPlace(String place) {
 		this.place = place;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
 	}
 	
 	

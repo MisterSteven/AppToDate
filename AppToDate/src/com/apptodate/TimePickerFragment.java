@@ -28,6 +28,8 @@ public class TimePickerFragment extends DialogFragment implements TimePickerDial
         c = Calendar.getInstance();
         this.hour = c.get(Calendar.HOUR_OF_DAY);
         this.minute = c.get(Calendar.MINUTE);
+        
+        // Refresh button lable with new time
         setButtonTime();
 	}
 	
@@ -39,8 +41,12 @@ public class TimePickerFragment extends DialogFragment implements TimePickerDial
     }
 
     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+    	
+    	// Save selected time and hour 
         this.hour = hourOfDay;
         this.minute = minute;
+        
+        // Refresh button lable with new time
         setButtonTime();
     }
 
@@ -53,8 +59,13 @@ public class TimePickerFragment extends DialogFragment implements TimePickerDial
 	}
 	
 	private void setButtonTime (){
+		// Set selected time and hour to calendar object
 		c.set(0, 0, 0, this.hour, this.minute);
+		
+		// Formating string with local format
 		String s = DateFormat.getTimeFormat(activity).format(c.getTime());
+		
+		// Set selected time to button lable
 		btnTimePicker.setText(s);
 		Log.d("Set time", "The time is set to " + s);
 	}

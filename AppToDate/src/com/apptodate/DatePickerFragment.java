@@ -32,6 +32,7 @@ public class DatePickerFragment extends DialogFragment implements DatePickerDial
         this.month = c.get(Calendar.MONTH);
         this.day = c.get(Calendar.DAY_OF_MONTH);
         
+     // Refresh button lable with new date
         setButtonDate();
 	}
 	
@@ -43,13 +44,15 @@ public class DatePickerFragment extends DialogFragment implements DatePickerDial
 	}
 	
 	public void onDateSet(DatePicker view, int year, int month, int day) {
+		// Save selected date
         this.year = year;
         this.month = month;
         this.day = day;
+        
+        // Refresh button lable with new date
         setButtonDate();
     }
 
-	
 	public int getYear() {
 		return year;
 	}
@@ -63,8 +66,13 @@ public class DatePickerFragment extends DialogFragment implements DatePickerDial
 	}
 
 	private void setButtonDate (){
+		// Set selected time and hour to calendar object
 		c.set(year, month, day);
+		
+		// Formating string with local format
 		String s = DateFormat.getDateFormat(activity).format(c.getTime());
+		
+		// Set selected date to button lable
 		btnDatePicker.setText(s);
 		Log.d("Set time", "The date is set to " + s);
 	}

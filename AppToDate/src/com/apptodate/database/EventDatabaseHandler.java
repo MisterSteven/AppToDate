@@ -47,8 +47,8 @@ public class EventDatabaseHandler extends SQLiteOpenHelper{
 						KEY_DT_START +" DATETIME, " + 
 						KEY_DISPLAY_NAME + " STRING, " +
 						KEY_DESCRIPTION + " STRING, " +
-						KEY_PLACE + " STRING "+
-						KEY_TITLE + " String " +
+						KEY_PLACE + " STRING, "+
+						KEY_TITLE + " STRING " +
 						");";
 		db.execSQL(sqlString);
 	}

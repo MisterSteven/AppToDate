@@ -68,6 +68,9 @@ public class TerminEintragen extends Activity {
 		
 		// Inserting event in database
 		edh.addEvent(event);
+		
+		// Close this activity
+		this.finish();
 	}
 	
 	// Clear every editable field

@@ -29,7 +29,7 @@
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content" >
 
             <TextView
@@ -39,11 +39,11 @@
                 android:text="@string/appointmentDate" />
 
             <Button
-                android:id="@+id/btnDate"
-                android:layout_width="270dp"
+                android:id="@+id/btnDatePicker"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Button" 
-                android:onClick="btnDate"/>
+                android:onClick="showDatePickerDialog"
+                android:background="@null"/>
 
         </LinearLayout>
 
@@ -57,10 +57,12 @@
                 android:layout_height="wrap_content"
                 android:text="@string/appointmentClock" />
 
-            <TimePicker
-                android:id="@+id/timePicker"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+            <Button
+                android:id="@+id/btnTimePicker"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="showTimePickerDialog"
+                android:background="@null" />
 
         </LinearLayout>
 
@@ -104,30 +106,6 @@
             android:onClick="btnSaveClick"/>
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="63dp" >
-
-        <ImageButton
-            android:id="@+id/imageButton4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.20"
-            android:src="@android:drawable/ic_menu_myplaces" />
-
-        <ImageButton
-            android:id="@+id/imageButton3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.20"
-            android:src="@android:drawable/ic_dialog_email" />
-
-        <ImageButton
-            android:id="@+id/imageButton5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.20"
-            android:src="@android:drawable/ic_menu_my_calendar" />
-    </LinearLayout>
+    <include layout="@layout/bottom_bar" />
 
 </LinearLayout>

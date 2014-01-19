@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="63dp" >
+    
+    <ImageButton
+                android:id="@+id/imageButton4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.20"
+                android:src="@android:drawable/ic_menu_myplaces" 
+                android:onClick="btnProfile"/>
+
+            <ImageButton
+                android:id="@+id/imageButton3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.20"
+                android:src="@android:drawable/ic_dialog_email" 
+                android:onClick="btnInbox"/>
+
+            <ImageButton
+                android:id="@+id/imageButton5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.20"
+                android:src="@android:drawable/ic_menu_my_calendar" />
+
+</LinearLayout>

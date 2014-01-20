@@ -23,5 +23,6 @@
     <string name="title_activity_inbox">InboxActivity</string>
     <string name="appointmentTitle">Title:</string>
     <string name="title_activity_event_view">Termine anzeigen</string>
+    <string name="appointmentSuccessfullInserted">Der Termin wurde erfolgreich hinzugefügt</string>
 
 </resources>

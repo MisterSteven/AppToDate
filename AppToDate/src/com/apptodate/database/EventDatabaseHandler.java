@@ -1,7 +1,9 @@
 package com.apptodate.database;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 
 import com.apptodate.model.Event;
 
@@ -10,6 +12,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.text.format.DateFormat;
 
 public class EventDatabaseHandler extends SQLiteOpenHelper{
 
@@ -43,7 +46,7 @@ public class EventDatabaseHandler extends SQLiteOpenHelper{
 		String sqlString = 
 				"CREATE TABLE " + TABLE_EVENT + "(" + 
 						KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + 
-						KEY_CREATE_AT + " DATETIME , " + 
+						KEY_CREATE_AT + " DATETIME, " + 
 						KEY_DT_START +" DATETIME, " + 
 						KEY_DISPLAY_NAME + " STRING, " +
 						KEY_DESCRIPTION + " STRING, " +
@@ -65,7 +68,7 @@ public class EventDatabaseHandler extends SQLiteOpenHelper{
 		SQLiteDatabase db = this.getWritableDatabase();
 		
 		ContentValues values = new ContentValues();
-		values.put(KEY_DT_START, ev.getDtstart());
+		values.put(KEY_DT_START, ev.getDtstart().getTime());
 		values.put(KEY_CREATE_AT, Calendar.getInstance().getTimeInMillis());
 		values.put(KEY_DESCRIPTION, ev.getDescription());
 		//values.put(KEY_DISPLAY_NAME, "");
@@ -92,16 +95,20 @@ public class EventDatabaseHandler extends SQLiteOpenHelper{
 		ArrayList<Event> result = new ArrayList<Event>();
 		while (recs.moveToNext()) {
 			Event e = new Event();
-			e.setId(recs.getLong(0));
-			e.setCreatedAt( recs.getLong(1));
-			e.setDtstart(recs.getLong(2));
-			e.setDescription(recs.getString(3));
-			e.setPlace(recs.getString(4));
-			e.setTitle(recs.getString(5));
+			e.setId(recs.getLong(recs.getColumnIndex(KEY_ID)));
+			e.setCreatedAt( recs.getLong(recs.getColumnIndex(KEY_CREATE_AT)));
+			e.setDtstart(new Date(recs.getLong(recs.getColumnIndex(KEY_DT_START))));
+			e.setDescription(recs.getString(recs.getColumnIndex(KEY_DESCRIPTION)));
+			e.setPlace(recs.getString(recs.getColumnIndex(KEY_PLACE)));
+			e.setTitle(recs.getString(recs.getColumnIndex(KEY_TITLE)));
 			result.add(e);
 		}
 		recs.close();
 		db.close();
 		return result;
+	}
+	
+	public void readEventByDate(int year, int month, int day){
+		
 	}
 }

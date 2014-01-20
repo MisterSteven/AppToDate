@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.apptodate.database.EventDatabaseHandler;
 import com.apptodate.model.Event;
@@ -64,10 +65,13 @@ public class TerminEintragen extends Activity {
 		cal.set(dpf.getYear(), dpf.getMonth(), dpf.getDay(), tpf.getHour(), tpf.getMinute());
 		
 		// Saving date and time in long
-		event.setDtstart(cal.getTimeInMillis());
+		event.setDtstart(cal.getTime());
 		
 		// Inserting event in database
 		edh.addEvent(event);
+		
+		// Notify user 
+		Toast.makeText(view.getContext(), R.string.appointmentSuccessfullInserted, Toast.LENGTH_LONG).show();
 		
 		// Close this activity
 		this.finish();

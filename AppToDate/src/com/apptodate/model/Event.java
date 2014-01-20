@@ -1,10 +1,12 @@
 package com.apptodate.model;
 
+import java.util.Date;
+
 public class Event {
 
 	private long createdAt;
 	private long id;
-	private long dtstart;
+	private Date dtstart;
 	private String description;
 	private String place;
 	private String title;
@@ -12,13 +14,13 @@ public class Event {
 	public Event() {
 		this.id = -1;
 		this.createdAt = -1;
-		this.dtstart = -1;
+		this.dtstart = null;
 		this.description = "";
 		this.place = "";
 		this.title = "";
 	}
 
-	public Event(long id, long createdAt, long eventAt, String description, String place, String title) {
+	public Event(long id, long createdAt, Date eventAt, String description, String place, String title) {
 		this.id = id;
 		this.createdAt = createdAt;
 		this.dtstart = eventAt;
@@ -43,11 +45,11 @@ public class Event {
 		this.id = id;
 	}
 
-	public long getDtstart() {
+	public Date getDtstart() {
 		return dtstart;
 	}
 
-	public void setDtstart(long dtstart) {
+	public void setDtstart(Date dtstart) {
 		this.dtstart = dtstart;
 	}
 

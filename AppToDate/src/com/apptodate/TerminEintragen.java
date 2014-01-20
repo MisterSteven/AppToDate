@@ -26,7 +26,7 @@ public class TerminEintragen extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_termin_eintragen);
 		event = new Event();
-		edh = new EventDatabaseHandler(this);
+		edh = new EventDatabaseHandler();
 		this.datePicker = new DatePickerFragment(this);
 		this.timePicker = new TimePickerFragment(this);
 	}

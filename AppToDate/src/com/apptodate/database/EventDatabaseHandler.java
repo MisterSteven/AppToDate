@@ -4,7 +4,10 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
+import java.util.Locale;
 
+import com.apptodate.ApplicationContextProvider;
 import com.apptodate.model.Event;
 
 import android.content.ContentValues;
@@ -13,6 +16,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.text.format.DateFormat;
+import android.util.Log;
 
 public class EventDatabaseHandler extends SQLiteOpenHelper{
 
@@ -37,8 +41,8 @@ public class EventDatabaseHandler extends SQLiteOpenHelper{
     private static final String KEY_PLACE = "place";
     private static final String KEY_TITLE ="title";
 	
-	public EventDatabaseHandler (Context context){
-		super (context, DATABASE_NAME, null, DATABASE_VERSION);
+	public EventDatabaseHandler (){
+		super (ApplicationContextProvider.getContext(), DATABASE_NAME, null, DATABASE_VERSION);
 	}
 	
 	@Override
@@ -68,7 +72,7 @@ public class EventDatabaseHandler extends SQLiteOpenHelper{
 		SQLiteDatabase db = this.getWritableDatabase();
 		
 		ContentValues values = new ContentValues();
-		values.put(KEY_DT_START, ev.getDtstart().getTime());
+		values.put(KEY_DT_START, getDateTime(ev.getDtstart()));
 		values.put(KEY_CREATE_AT, Calendar.getInstance().getTimeInMillis());
 		values.put(KEY_DESCRIPTION, ev.getDescription());
 		//values.put(KEY_DISPLAY_NAME, "");
@@ -108,7 +112,37 @@ public class EventDatabaseHandler extends SQLiteOpenHelper{
 		return result;
 	}
 	
-	public void readEventByDate(int year, int month, int day){
-		
+	public ArrayList<Event> readEventByDate(int year, int month, int day){
+		SQLiteDatabase db = this.getReadableDatabase();
+		Calendar minDate = new GregorianCalendar (year, month, day, 00, 00, 00);
+		Calendar maxDate = new GregorianCalendar (year, month, day, 23, 59, 59);
+		String [] dateSearchPattern = new String [] { getDateTime(minDate.getTime()), getDateTime(maxDate.getTime())};
+		Log.d("ReadEventByDate", "The used pattern for search is " + dateSearchPattern[0] + " until " + dateSearchPattern[1]);
+		Cursor recs = db.query(
+				TABLE_EVENT,
+				null,
+				KEY_DT_START + " BETWEEN ? AND ?",
+				dateSearchPattern,
+				null, null, null);
+		ArrayList<Event> result = new ArrayList<Event>();
+		while (recs.moveToNext()) {
+			Event e = new Event();
+			e.setId(recs.getLong(recs.getColumnIndex(KEY_ID)));
+			e.setCreatedAt( recs.getLong(recs.getColumnIndex(KEY_CREATE_AT)));
+			e.setDtstart(new Date(recs.getLong(recs.getColumnIndex(KEY_DT_START))));
+			e.setDescription(recs.getString(recs.getColumnIndex(KEY_DESCRIPTION)));
+			e.setPlace(recs.getString(recs.getColumnIndex(KEY_PLACE)));
+			e.setTitle(recs.getString(recs.getColumnIndex(KEY_TITLE)));
+			result.add(e);
+		}
+		recs.close();
+		db.close();
+		return result;
 	}
+	
+	private String getDateTime(Date date) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat(
+                "yyyy-MM-dd HH:mm:ss", Locale.getDefault());
+        return dateFormat.format(date);
+}
 }

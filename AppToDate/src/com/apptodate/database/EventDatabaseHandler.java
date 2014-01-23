@@ -130,6 +130,7 @@ public class EventDatabaseHandler extends SQLiteOpenHelper{
 			e.setId(recs.getLong(recs.getColumnIndex(KEY_ID)));
 			e.setCreatedAt( recs.getLong(recs.getColumnIndex(KEY_CREATE_AT)));
 			e.setDtstart(new Date(recs.getLong(recs.getColumnIndex(KEY_DT_START))));
+			Log.d("ReadEventByDate", "The setDtstart is: " + recs.getLong(recs.getColumnIndex(KEY_DT_START) ));
 			e.setDescription(recs.getString(recs.getColumnIndex(KEY_DESCRIPTION)));
 			e.setPlace(recs.getString(recs.getColumnIndex(KEY_PLACE)));
 			e.setTitle(recs.getString(recs.getColumnIndex(KEY_TITLE)));

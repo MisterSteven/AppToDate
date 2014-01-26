@@ -89,6 +89,9 @@ public class TerminEintragen extends Activity {
 		
 		// clear string in field Place
 		((TextView) findViewById(R.id.textPlace)).setText("");
+		
+		// clear string in field Place
+		((TextView) findViewById(R.id.textTitle)).setText("");
 	}
 
 	// Read out content of ViewElement

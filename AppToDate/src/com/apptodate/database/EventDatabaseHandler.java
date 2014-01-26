@@ -1,5 +1,6 @@
 package com.apptodate.database;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -116,6 +117,7 @@ public class EventDatabaseHandler extends SQLiteOpenHelper{
 		SQLiteDatabase db = this.getReadableDatabase();
 		Calendar minDate = new GregorianCalendar (year, month, day, 00, 00, 00);
 		Calendar maxDate = new GregorianCalendar (year, month, day, 23, 59, 59);
+		DateFormat iso8601Format = new DateFormat();
 		String [] dateSearchPattern = new String [] { getDateTime(minDate.getTime()), getDateTime(maxDate.getTime())};
 		Log.d("ReadEventByDate", "The used pattern for search is " + dateSearchPattern[0] + " until " + dateSearchPattern[1]);
 		Cursor recs = db.query(
@@ -129,8 +131,14 @@ public class EventDatabaseHandler extends SQLiteOpenHelper{
 			Event e = new Event();
 			e.setId(recs.getLong(recs.getColumnIndex(KEY_ID)));
 			e.setCreatedAt( recs.getLong(recs.getColumnIndex(KEY_CREATE_AT)));
-			e.setDtstart(new Date(recs.getLong(recs.getColumnIndex(KEY_DT_START))));
-			Log.d("ReadEventByDate", "The setDtstart is: " + recs.getLong(recs.getColumnIndex(KEY_DT_START) ));
+			Date d;
+			try {
+				d =  new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").parse(recs.getString(recs.getColumnIndex(KEY_DT_START)));
+			} catch (ParseException e1) {
+				e1.printStackTrace();
+				d = new Date();
+			}
+			e.setDtstart(d);
 			e.setDescription(recs.getString(recs.getColumnIndex(KEY_DESCRIPTION)));
 			e.setPlace(recs.getString(recs.getColumnIndex(KEY_PLACE)));
 			e.setTitle(recs.getString(recs.getColumnIndex(KEY_TITLE)));
